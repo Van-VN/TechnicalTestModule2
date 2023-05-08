@@ -14,17 +14,25 @@ export class ManagingStudent {
     }
   }
 
-  getIndex(input: number) : number{
+  protected findStudentByName(input: string): any {
+    let found: Student[] = [];
+    this.StudentsList.forEach((item) => {
+      if (item.getName().search(input) !== -1) {
+        found.push(item);
+      }
+    });
+    return found;
+  }
+
+  protected getIndex(input: number): number {
     let index: number = -1;
-      this.StudentsList.forEach((item) => {
-        
+    this.StudentsList.forEach((item) => {
       if (item.getCode() === input) {
         index = this.StudentsList.indexOf(item);
       }
     });
     return index;
     //   this.StudentsList.find(item => item.getCode() === input)
-      
   }
 
   protected findStudentByID(input: number) {

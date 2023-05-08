@@ -15,11 +15,12 @@ export class MainController extends ManagingStudent {
         Chọn tính năng muốn sử dụng:
         
         [1] Hiển thị danh sách sinh viên
-        [2] Tìm kiếm sinh viên theo tên
-        [3] Nhập thông tin sinh viên mới
-        [4] Chỉnh sửa thông tin sinh viên
-        [5] Xóa sinh viên khỏi ứng dụng
-        [6] Thoát phần mềm
+        [2] Tìm kiếm sinh viên theo ID
+        [3] Tìm kiếm sinh viên theo tên
+        [4] Nhập thông tin sinh viên mới
+        [5] Chỉnh sửa thông tin sinh viên
+        [6] Xóa sinh viên khỏi ứng dụng
+        [7] Thoát phần mềm
         ---------------------------------------------`);
     this.mainInput();
   }
@@ -41,10 +42,16 @@ export class MainController extends ManagingStudent {
         this.mainDisplay();
         break;
       case 3:
+        let nameToFind = readlineSync.question(
+          `\nInput name of the student to find: `
+        );
+        console.table(this.findStudentByName(nameToFind));
+        break;
+      case 4:
         this.addStudentInput();
         this.mainDisplay();
         break;
-      case 4:
+      case 5:
         let studentIDToEdit = readlineSync.question(
           `\nPlease type in the student's code: `
         );
@@ -59,14 +66,14 @@ export class MainController extends ManagingStudent {
         }
         this.mainDisplay();
         break;
-      case 5:
+      case 6:
         let deleteCode = readlineSync.question(
           `\nPlease input the student's code to be deleted: `
         );
         this.deleteStudent(parseInt(deleteCode));
         this.mainDisplay();
         break;
-      case 6:
+      case 7:
         console.log("Goodbye!");
         break;
       default:
